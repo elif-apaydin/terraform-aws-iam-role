@@ -1,0 +1,10 @@
+pipelines:
+    custom:
+      iam:
+        - step:
+            name: IAM Instance Profile Deploy
+            image: hashicorp/terraform:full
+            deployment: Production
+            script:
+                - sed -i -e "4i $IAM_BACKEND" backend.tf
+                - sh deploy.sh
